@@ -92,20 +92,6 @@ class _ReservationState extends State<Reservation> {
                                         context,
                                         widget.branch.location,
                                         widget.serviceId);
-                                // ReservationCubit.post(context)
-                                //     .reservationModel!
-                                //     .data!
-                                //     .length;
-                                // showAlertDialog(
-                                //     ReservationCubit.post(context)
-                                //         .reservationModel!
-                                //         .data!,
-                                //     context);
-                                // (index) => showAlertDialog(
-                                //     ReservationCubit.post(context)
-                                //         .reservationModel!
-                                //         .data![index],
-                                //     context);
                               },
                               child: const Center(
                                 child: Text(
@@ -167,7 +153,7 @@ showAlertDialog(Data model, ctx, location, message) {
   AlertDialog alert = AlertDialog(
     title: const Text("Reservation"),
     content: SizedBox(
-      height: 150,
+      height: 175,
       child: Column(
         children: [
           Text(

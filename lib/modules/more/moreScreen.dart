@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smartqueue/database/CacheHelper.dart';
+import 'package:smartqueue/modules/more/ChatBot.dart';
 import 'package:smartqueue/modules/more/SittingsPage.dart';
 import '../../SignIn-SignUp/SignIn.dart';
 import 'Profile.dart';
@@ -93,29 +94,35 @@ class _moreScreenState extends State<moreScreen> {
                     ),
                   ),
                 ),
-
-                /*  Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                Padding(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: TextButton(
                     style: TextButton.styleFrom(
                       primary: Colors.deepPurple,
-                      padding: EdgeInsets.all(20),
-                      shape:
-                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                      padding: const EdgeInsets.all(20),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
                       backgroundColor: Colors.grey[200],
                     ),
-                    onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()));},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>  ChatBot()));
+                    },
                     child: Row(
-                      children: [
-                        Icon(Icons.settings,),
+                      children: const [
+                        Icon(
+                          Icons.chat,
+                        ),
                         SizedBox(width: 20),
-                        Expanded(child: Text("Settings")),
+                        Expanded(child: Text("Chat")),
                         Icon(Icons.arrow_forward_ios),
                       ],
                     ),
                   ),
-                ),*/
-
+                ),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

@@ -87,8 +87,8 @@ class _ScanScreenState extends State<ScanScreen> {
             qrstr = """
           Welcome 
           Place Name : ${widget.placeName}
-          your turn : ${widget.turn}
           your service : ${widget.serviceName}
+          your turn : ${widget.turn}
           Your turn is confirmed
           """;
           });

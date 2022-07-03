@@ -17,6 +17,7 @@ import 'cubit/branch-cubit/branches_cubit.dart';
 import 'cubit/getReservation/get_reservation_cubit.dart';
 import 'database/CacheHelper.dart';
 import 'database/DioHelper.dart';
+import 'modules/more/ChatBot.dart';
 import 'modules/notificationsScreen.dart';
 
 Future<void> main() async {
