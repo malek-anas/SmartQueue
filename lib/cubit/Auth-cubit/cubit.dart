@@ -18,17 +18,14 @@ class AuthCubit extends Cubit<AuthState> {
     required String password,
   }) async {
     emit(LoginLoadingState());
-   /* String? fcmToken = await FirebaseMessaging.instance.getToken();
-    print("fcmToken: ${fcmToken} " );*/
+    String? fcmToken = await FirebaseMessaging.instance.getToken();
+    print("fcmToken: ${fcmToken} " );
     DioHelper.postData(
       path: LOGIN,
       data: {
         'email': email,
         'password': password,
-
-/*
-      'fcm_token': fcmToken,
-*/
+        'fcm_token': fcmToken,
 
       },
     ).then((value) {
