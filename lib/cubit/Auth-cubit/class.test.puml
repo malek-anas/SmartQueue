@@ -1,0 +1,2270 @@
+@startuml
+set namespaceSeparator ::
+class "smartqueue::cubit::App-cubit::cubit.dart::AppCubit" {
+  +AuthModel? authModel
+  {static} +AppCubit get()
+  +void userLogin()
+  +void userRegister()
+}
+"smartqueue::cubit::App-cubit::cubit.dart::AppCubit" o-- "smartqueue::Models::AuthModel.dart::AuthModel"
+"bloc::src::cubit.dart::Cubit" <|-- "smartqueue::cubit::App-cubit::cubit.dart::AppCubit"
+
+abstract class "smartqueue::cubit::App-cubit::states.dart::AuthState" {
+}
+
+class "smartqueue::cubit::App-cubit::states.dart::initialState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::initialState"
+
+class "smartqueue::cubit::App-cubit::states.dart::LoginLoadingState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::LoginLoadingState"
+
+class "smartqueue::cubit::App-cubit::states.dart::LoginSucssesState" {
+  +AuthModel authModel
+}
+
+"smartqueue::cubit::App-cubit::states.dart::LoginSucssesState" o-- "smartqueue::Models::AuthModel.dart::AuthModel"
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::LoginSucssesState"
+
+class "smartqueue::cubit::App-cubit::states.dart::LoginErrorState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::LoginErrorState"
+
+class "smartqueue::cubit::App-cubit::states.dart::SignUpLoadingState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::SignUpLoadingState"
+
+class "smartqueue::cubit::App-cubit::states.dart::SignUpSucssesState" {
+  +AuthModel authModel
+}
+
+"smartqueue::cubit::App-cubit::states.dart::SignUpSucssesState" o-- "smartqueue::Models::AuthModel.dart::AuthModel"
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::SignUpSucssesState"
+
+class "smartqueue::cubit::App-cubit::states.dart::SignUpErrorState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::SignUpErrorState"
+
+class "smartqueue::cubit::App-cubit::states.dart::ProfileLoadingState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::ProfileLoadingState"
+
+class "smartqueue::cubit::App-cubit::states.dart::ProfileSucssesState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::ProfileSucssesState"
+
+class "smartqueue::cubit::App-cubit::states.dart::ProfileErrorState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::ProfileErrorState"
+
+class "smartqueue::cubit::branch-cubit::cubit.dart::HomeCubit" {
+  +HomeModel? homeModel
+  +HomeModel? data
+  {static} +HomeCubit get()
+  +void getHomeData()
+}
+
+"smartqueue::cubit::branch-cubit::cubit.dart::HomeCubit" o-- "smartqueue::Models::branch-models.dart::HomeModel"
+"bloc::src::cubit.dart::Cubit" <|-- "smartqueue::cubit::branch-cubit::cubit.dart::HomeCubit"
+
+abstract class "smartqueue::cubit::branch-cubit::states.dart::HomeStates" {
+}
+
+class "smartqueue::cubit::branch-cubit::states.dart::HomeInitialState" {
+}
+
+"smartqueue::cubit::branch-cubit::states.dart::HomeStates" <|-- "smartqueue::cubit::branch-cubit::states.dart::HomeInitialState"
+
+class "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataLoadingState" {
+}
+
+"smartqueue::cubit::branch-cubit::states.dart::HomeStates" <|-- "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataLoadingState"
+
+class "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataSuccessState" {
+  +HomeModel homeModel
+}
+
+"smartqueue::cubit::branch-cubit::states.dart::HomeGetDataSuccessState" o-- "smartqueue::Models::branch-models.dart::HomeModel"
+"smartqueue::cubit::branch-cubit::states.dart::HomeStates" <|-- "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataSuccessState"
+
+class "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataErrorState" {
+}
+
+"smartqueue::cubit::branch-cubit::states.dart::HomeStates" <|-- "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataErrorState"
+
+class "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsCubit" {
+  +DataService dataService
+  +void posts
+}
+
+"bloc::src::cubit.dart::Cubit" <|-- "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsCubit"
+
+abstract class "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsState" {
+}
+
+class "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsInitial" {
+}
+
+"smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsState" <|-- "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsInitial"
+
+class "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::GetPosts" {
+}
+
+"smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsState" <|-- "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::GetPosts"
+
+class "smartqueue::database::CacheHelper.dart::CacheHelper" {
+  {static} +SharedPreferences? sharedPreferences
+  {static} +dynamic int()
+  {static} +Future<bool> putBoolean()
+  {static} +dynamic getData()
+  {static} +Future<bool> saveData()
+  {static} +Future<bool> removeData()
+}
+
+"smartqueue::database::CacheHelper.dart::CacheHelper" o-- "shared_preferences::shared_preferences.dart::SharedPreferences"
+
+class "smartqueue::database::current_reservation-data_service::data_service.dart::DataService" {
+  -String _baseurl
+  +Future<List<Post>> getPosts()
+}
+
+class "smartqueue::database::UserModel.dart::DioHelper" {
+  {static} +Dio? dio
+  {static} +dynamic init()
+  {static} +Future<Response<dynamic>> postData()
+  {static} +Future<Response<dynamic>> getData()
+}
+
+"smartqueue::database::UserModel.dart::DioHelper" o-- "dio::src::dio.dart::Dio"
+
+class "smartqueue::database::UserModel.dart::DioHelper4" {
+  {static} +Dio? dio
+  {static} +dynamic init()
+  {static} +Future<Response<dynamic>> postData()
+  {static} +Future<Response<dynamic>> getData()
+}
+
+"smartqueue::database::UserModel.dart::DioHelper4" o-- "dio::src::dio.dart::Dio"
+
+class "smartqueue::database::UserModel.dart::DioHelper2" {
+  {static} +Dio? dio
+  {static} +dynamic init()
+  {static} +Future<Response<dynamic>> postData()
+  {static} +Future<Response<dynamic>> getData()
+}
+
+"smartqueue::database::UserModel.dart::DioHelper2" o-- "dio::src::dio.dart::Dio"
+
+class "smartqueue::database::UserModel.dart::DioHelper3" {
+  {static} +Dio? dio
+  {static} +dynamic init()
+  {static} +Future<Response<dynamic>> postData()
+  {static} +Future<Response<dynamic>> getData()
+}
+
+"smartqueue::database::UserModel.dart::DioHelper3" o-- "dio::src::dio.dart::Dio"
+
+class "smartqueue::Home::Branches.dart::Branches" {
+  +State<Branches> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::Home::Branches.dart::Branches"
+
+class "smartqueue::Home::Branches.dart::_BranchesState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::Home::Branches.dart::_BranchesState"
+
+class "smartqueue::Home::HomeScreen.dart::HomeScreen" {
+  +State<HomeScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::Home::HomeScreen.dart::HomeScreen"
+
+class "smartqueue::Home::HomeScreen.dart::_HomeScreenState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::Home::HomeScreen.dart::_HomeScreenState"
+
+class "smartqueue::Home::Nav_Bar.dart::Nav_Bar" {
+  +_Nav_BarState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::Home::Nav_Bar.dart::Nav_Bar"
+
+class "smartqueue::Home::Nav_Bar.dart::_Nav_BarState" {
+  +int currentIndex
+  +List<Widget> screens
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::Home::Nav_Bar.dart::_Nav_BarState"
+
+class "smartqueue::Home::Nav_Bar.dart::BottomNavBarV2" {
+  +_BottomNavBarV2State createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::Home::Nav_Bar.dart::BottomNavBarV2"
+
+class "smartqueue::Home::Nav_Bar.dart::_BottomNavBarV2State" {
+  +int currentIndex
+  +dynamic setBottomBarIndex()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::Home::Nav_Bar.dart::_BottomNavBarV2State"
+
+class "smartqueue::Home::Nav_Bar.dart::BNBCustomPainter" {
+  +void paint()
+  +bool shouldRepaint()
+}
+
+"flutter::src::rendering::custom_paint.dart::CustomPainter" <|-- "smartqueue::Home::Nav_Bar.dart::BNBCustomPainter"
+
+class "smartqueue::intro::onboarding_page.dart::OnBoardingPage" {
+  +Widget build()
+  +void goToHome()
+  +Widget buildImage()
+  +DotsDecorator getDotDecoration()
+  +PageDecoration getPageDecoration()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::intro::onboarding_page.dart::OnBoardingPage"
+
+class "smartqueue::intro::WelcomeBage.dart::Welcome" {
+  +_WelcomeState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::intro::WelcomeBage.dart::Welcome"
+
+class "smartqueue::intro::WelcomeBage.dart::_WelcomeState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::intro::WelcomeBage.dart::_WelcomeState"
+
+class "smartqueue::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::main.dart::MyApp"
+
+class "smartqueue::Models::AuthModel.dart::AuthModel" {
+  +Data? data
+  +String? token
+  +String? message
+  +int? status
+  +bool? success
+  +Map<String, dynamic> toJson()
+}
+
+"smartqueue::Models::AuthModel.dart::AuthModel" o-- "smartqueue::Models::AuthModel.dart::Data"
+
+class "smartqueue::Models::AuthModel.dart::Data" {
+  +int? id
+  +String? name
+  +String? email
+  +String? password
+  +String? phone
+  +Map<String, dynamic> toJson()
+}
+
+class "smartqueue::Models::branch-models.dart::HomeModel" {
+  +String? status
+  +String? message
+  +List<Book>? data
+  +Map<String, dynamic> toJson()
+}
+
+class "smartqueue::Models::branch-models.dart::Book" {
+  +int? id
+  +String? name
+  +String? description
+  +String? file1
+  +String? categories
+  +String? audio
+  +String? author
+  +double? rate
+  +String? url
+  +String? file2
+  +String? url1
+  +String? createdAt
+  +String? updatedAt
+  +Map<String, dynamic> toJson()
+}
+
+class "smartqueue::Models::post.dart::Post" {
+  +int? userId
+  +int? id
+  +String? title
+  +String? body
+  +Map<String, dynamic> toJson()
+}
+
+class "smartqueue::modules::current_reservation_screen.dart::CurrentReservationScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::modules::current_reservation_screen.dart::CurrentReservationScreen"
+
+class "smartqueue::modules::favoritesScreen.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::favoritesScreen.dart::FavoritesScreen" {
+  +State<FavoritesScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::favoritesScreen.dart::FavoritesScreen"
+
+class "smartqueue::modules::favoritesScreen.dart::_FavoritesScreenState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::favoritesScreen.dart::_FavoritesScreenState"
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20bt.dart::Bank_of_Cairo_bt" {
+  +State<Bank_of_Cairo_bt> createState()
+}
+
+
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20bt.dart::_Bank_of_Cairo_bt" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20bt.dart::_Bank_of_Cairo_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20cs.dart::Bank_of_Cairo_cs" {
+  +State<Bank_of_Cairo_cs> createState()
+}
+
+
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20cs.dart::_Bank_of_Cairo_cs" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20cs.dart::_Bank_of_Cairo_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo.dart::Bank_of_Cairo" {
+  +State<Bank_of_Cairo> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo.dart::Bank_of_Cairo"
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo.dart::_Bank_of_Cairo" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo.dart::_Bank_of_Cairo"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banks-details.dart::BanksDetailsScreen" {
+  {static} +String routePass
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banks-details.dart::BanksDetailsScreen"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banks.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::HomeScreen::banksfile::Banks.dart::Banks" {
+  +State<Banks> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banks.dart::Banks"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banks.dart::_BanksState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Banks.dart::_BanksState"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20bt.dart::Banque_Misr_bt" {
+  +State<Banque_Misr_bt> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20bt.dart::Banque_Misr_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20bt.dart::_Banque_Misr_bt" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20bt.dart::_Banque_Misr_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20cs.dart::Banque_Misr_cs" {
+  +State<Banque_Misr_cs> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20cs.dart::Banque_Misr_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20cs.dart::_Banque_Misr_cs" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20cs.dart::_Banque_Misr_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr.dart::Banque_Misr" {
+  +State<Banque_Misr> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr.dart::Banque_Misr"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr.dart::_Banque_Misr" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr.dart::_Banque_Misr"
+
+class "smartqueue::modules::HomeScreen::banksfile::branches.dart::Branches1" {
+  +State<Branches1> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::branches.dart::Branches1"
+
+class "smartqueue::modules::HomeScreen::banksfile::branches.dart::_Branches1State" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::branches.dart::_Branches1State"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIB.dart::Cib" {
+  +State<Cib> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIB.dart::Cib"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIB.dart::_Cib" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIB.dart::_Cib"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIBbt.dart::Cib_bt" {
+  +State<Cib_bt> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIBbt.dart::Cib_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIBbt.dart::_Cib_bt" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIBbt.dart::_Cib_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIBcs.dart::Cib_cs" {
+  +State<Cib_cs> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIBcs.dart::Cib_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIBcs.dart::_Cib_cs" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIBcs.dart::_Cib_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::national%20bank%20of%20egypt.dart::national_bank_of_egypt" {
+  +State<national_bank_of_egypt> createState()
+}
+
+
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::national%20bank%20of%20egypt.dart::_national_bank_of_egypt" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::national%20bank%20of%20egypt.dart::_national_bank_of_egypt"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::nbebt.dart::Nbe_bt" {
+  +State<Nbe_bt> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::nbebt.dart::Nbe_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::nbebt.dart::_Nbe_bt" {
+  +String qrCode
+  +Future<void> scanQRCode()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::nbebt.dart::_Nbe_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::nbecs.dart::Nbe_cs" {
+  +State<Nbe_cs> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::nbecs.dart::Nbe_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::nbecs.dart::_Nbe_cs" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::nbecs.dart::_Nbe_cs"
+
+class "smartqueue::modules::HomeScreen::Clinics.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::HomeScreen::Clinics.dart::Clinics" {
+  +State<Clinics> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::Clinics.dart::Clinics"
+
+class "smartqueue::modules::HomeScreen::Clinics.dart::_ClinicsState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::Clinics.dart::_ClinicsState"
+
+class "smartqueue::modules::HomeScreen::Government%20interests.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::HomeScreen::Government%20interests.dart::Governmentinterests" {
+  +State<Governmentinterests> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::Government%20interests.dart::Governmentinterests"
+
+class "smartqueue::modules::HomeScreen::Government%20interests.dart::_GovernmentinterestsState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::Government%20interests.dart::_GovernmentinterestsState"
+
+class "smartqueue::modules::HomeScreen::homeScreen.dart::UserModel" {
+  +String name
+  +String image
+  +String screen
+}
+
+class "smartqueue::modules::HomeScreen::homeScreen.dart::homeScreen" {
+  +_homeScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::homeScreen.dart::homeScreen"
+
+class "smartqueue::modules::HomeScreen::homeScreen.dart::_homeScreenState" {
+  +List<UserModel> users
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::homeScreen.dart::_homeScreenState"
+
+class "smartqueue::modules::HomeScreen::readQr.dart::ScanScreen" {
+  +_ScanScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::readQr.dart::ScanScreen"
+
+class "smartqueue::modules::HomeScreen::readQr.dart::_ScanScreenState" {
+  +String qrstr
+  +dynamic height
+  +dynamic width
+  +Widget build()
+  +Future<void> scanQr()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::readQr.dart::_ScanScreenState"
+
+class "smartqueue::modules::HomeScreen::Telecom%20companies.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::HomeScreen::Telecom%20companies.dart::TelecomCompanies" {
+  +State<TelecomCompanies> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::Telecom%20companies.dart::TelecomCompanies"
+
+class "smartqueue::modules::HomeScreen::Telecom%20companies.dart::_TelecomCompaniesState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::Telecom%20companies.dart::_TelecomCompaniesState"
+
+class "smartqueue::modules::more::moreScreen.dart::moreScreen" {
+  +_moreScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::more::moreScreen.dart::moreScreen"
+
+class "smartqueue::modules::more::moreScreen.dart::_moreScreenState" {
+  +dynamic signout()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::more::moreScreen.dart::_moreScreenState"
+
+class "smartqueue::modules::more::Profile.dart::ProfilePage" {
+  +State<ProfilePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::more::Profile.dart::ProfilePage"
+
+class "smartqueue::modules::more::Profile.dart::_ProfilePageState" {
+  +Widget build()
+  +Widget buildTextField()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::more::Profile.dart::_ProfilePageState"
+
+class "smartqueue::modules::more::SittingsPage.dart::SettingsPage" {
+  +_SettingsPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::more::SittingsPage.dart::SettingsPage"
+
+class "smartqueue::modules::more::SittingsPage.dart::_SettingsPageState" {
+  +Widget build()
+  +Row buildNotificationOptionRow()
+  +GestureDetector buildAccountOptionRow()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::more::SittingsPage.dart::_SettingsPageState"
+
+class "smartqueue::modules::notificationsScreen.dart::notificationsScreen" {
+  +_notificationsScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::notificationsScreen.dart::notificationsScreen"
+
+class "smartqueue::modules::notificationsScreen.dart::_notificationsScreenState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::notificationsScreen.dart::_notificationsScreenState"
+
+class "smartqueue::modules::searchScreen.dart::searchScreen" {
+  +_searchScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::searchScreen.dart::searchScreen"
+
+class "smartqueue::modules::searchScreen.dart::_searchScreenState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::searchScreen.dart::_searchScreenState"
+
+class "smartqueue::SignIn-SignUp::SignIn.dart::SignIn" {
+  +State<SignIn> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::SignIn-SignUp::SignIn.dart::SignIn"
+
+class "smartqueue::SignIn-SignUp::SignIn.dart::_SignInState" {
+  +Pattern pattern
+  +TextEditingController email
+  +TextEditingController password
+  -GlobalKey<FormState> _formkey
+  -bool _isObscure
+  +Widget build()
+}
+
+"smartqueue::SignIn-SignUp::SignIn.dart::_SignInState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"smartqueue::SignIn-SignUp::SignIn.dart::_SignInState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::SignIn-SignUp::SignIn.dart::_SignInState"
+
+class "smartqueue::SignIn-SignUp::SignUp.dart::SignUp" {
+  +State<SignUp> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::SignIn-SignUp::SignUp.dart::SignUp"
+
+class "smartqueue::SignIn-SignUp::SignUp.dart::_SignUpState" {
+  +Pattern pattern
+  +TextEditingController name
+  +TextEditingController email
+  +TextEditingController phonenumber
+  +TextEditingController password
+  +TextEditingController confirmpassword
+  -GlobalKey<FormState> _formkey
+  -bool _isObscure
+  -bool _isObscure1
+  +Widget build()
+}
+
+"smartqueue::SignIn-SignUp::SignUp.dart::_SignUpState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"smartqueue::SignIn-SignUp::SignUp.dart::_SignUpState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::SignIn-SignUp::SignUp.dart::_SignUpState"
+
+class "smartqueue::SplashScreen::SplashScreen.dart::SplashScreen" {
+  +_SplashScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::SplashScreen::SplashScreen.dart::SplashScreen"
+
+class "smartqueue::SplashScreen::SplashScreen.dart::_SplashScreenState" {
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::SplashScreen::SplashScreen.dart::_SplashScreenState"
+
+class "smartqueue::widget::button_widget.dart::ButtonWidget" {
+  +String text
+  +void Function() onClicked
+  +Widget build()
+}
+
+"smartqueue::widget::button_widget.dart::ButtonWidget" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::widget::button_widget.dart::ButtonWidget"
+
+class "smartqueue::widget::category_card.dart::CategoryCard" {
+  +String svgSrc
+  +String title
+  +Function press
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::widget::category_card.dart::CategoryCard"
+
+class "smartqueue::widget::search_bar.dart::SearchBar" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::widget::search_bar.dart::SearchBar"
+
+
+@enduml
+PS D:\Flutter Projects\SmartQueue-master> Flutter pub global run dcdg
+@startuml
+set namespaceSeparator ::
+
+class "smartqueue::cubit::App-cubit::cubit.dart::AppCubit" {
+  +AuthModel? authModel
+  {static} +AppCubit get()
+  +void userLogin()
+  +void userRegister()
+}
+
+"smartqueue::cubit::App-cubit::cubit.dart::AppCubit" o-- "smartqueue::Models::AuthModel.dart::AuthModel"
+"bloc::src::cubit.dart::Cubit" <|-- "smartqueue::cubit::App-cubit::cubit.dart::AppCubit"
+
+abstract class "smartqueue::cubit::App-cubit::states.dart::AuthState" {
+}
+
+class "smartqueue::cubit::App-cubit::states.dart::initialState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::initialState"
+
+class "smartqueue::cubit::App-cubit::states.dart::LoginLoadingState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::LoginLoadingState"
+
+class "smartqueue::cubit::App-cubit::states.dart::LoginSucssesState" {
+  +AuthModel authModel
+}
+
+"smartqueue::cubit::App-cubit::states.dart::LoginSucssesState" o-- "smartqueue::Models::AuthModel.dart::AuthModel"
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::LoginSucssesState"
+
+class "smartqueue::cubit::App-cubit::states.dart::LoginErrorState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::LoginErrorState"
+
+class "smartqueue::cubit::App-cubit::states.dart::SignUpLoadingState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::SignUpLoadingState"
+
+class "smartqueue::cubit::App-cubit::states.dart::SignUpSucssesState" {
+  +AuthModel authModel
+}
+
+"smartqueue::cubit::App-cubit::states.dart::SignUpSucssesState" o-- "smartqueue::Models::AuthModel.dart::AuthModel"
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::SignUpSucssesState"
+
+class "smartqueue::cubit::App-cubit::states.dart::SignUpErrorState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::SignUpErrorState"
+
+class "smartqueue::cubit::App-cubit::states.dart::ProfileLoadingState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::ProfileLoadingState"
+
+class "smartqueue::cubit::App-cubit::states.dart::ProfileSucssesState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::ProfileSucssesState"
+
+class "smartqueue::cubit::App-cubit::states.dart::ProfileErrorState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::ProfileErrorState"
+
+class "smartqueue::cubit::branch-cubit::cubit.dart::HomeCubit" {
+  +HomeModel? homeModel
+  +HomeModel? data
+  {static} +HomeCubit get()
+  +void getHomeData()
+}
+
+"smartqueue::cubit::branch-cubit::cubit.dart::HomeCubit" o-- "smartqueue::Models::branch-models.dart::HomeModel"
+"bloc::src::cubit.dart::Cubit" <|-- "smartqueue::cubit::branch-cubit::cubit.dart::HomeCubit"
+
+abstract class "smartqueue::cubit::branch-cubit::states.dart::HomeStates" {
+}
+
+class "smartqueue::cubit::branch-cubit::states.dart::HomeInitialState" {
+}
+
+"smartqueue::cubit::branch-cubit::states.dart::HomeStates" <|-- "smartqueue::cubit::branch-cubit::states.dart::HomeInitialState"
+
+class "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataLoadingState" {
+}
+
+"smartqueue::cubit::branch-cubit::states.dart::HomeStates" <|-- "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataLoadingState"
+
+class "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataSuccessState" {
+  +HomeModel homeModel
+}
+
+"smartqueue::cubit::branch-cubit::states.dart::HomeGetDataSuccessState" o-- "smartqueue::Models::branch-models.dart::HomeModel"
+"smartqueue::cubit::branch-cubit::states.dart::HomeStates" <|-- "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataSuccessState"
+
+class "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataErrorState" {
+}
+
+"smartqueue::cubit::branch-cubit::states.dart::HomeStates" <|-- "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataErrorState"
+
+class "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsCubit" {
+  +DataService dataService
+  +void posts
+}
+
+"bloc::src::cubit.dart::Cubit" <|-- "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsCubit"
+
+abstract class "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsState" {
+}
+
+class "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsInitial" {
+}
+
+"smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsState" <|-- "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsInitial"
+
+class "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::GetPosts" {
+}
+
+"smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsState" <|-- "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::GetPosts"
+
+class "smartqueue::database::CacheHelper.dart::CacheHelper" {
+  {static} +SharedPreferences? sharedPreferences
+  {static} +dynamic int()
+  {static} +Future<bool> putBoolean()
+  {static} +dynamic getData()
+  {static} +Future<bool> saveData()
+  {static} +Future<bool> removeData()
+}
+
+"smartqueue::database::CacheHelper.dart::CacheHelper" o-- "shared_preferences::shared_preferences.dart::SharedPreferences"
+
+class "smartqueue::database::current_reservation-data_service::data_service.dart::DataService" {
+  -String _baseurl
+  +Future<List<Post>> getPosts()
+}
+
+class "smartqueue::database::UserModel.dart::DioHelper" {
+  {static} +Dio? dio
+  {static} +dynamic init()
+  {static} +Future<Response<dynamic>> postData()
+  {static} +Future<Response<dynamic>> getData()
+}
+
+"smartqueue::database::UserModel.dart::DioHelper" o-- "dio::src::dio.dart::Dio"
+
+class "smartqueue::database::UserModel.dart::DioHelper4" {
+  {static} +Dio? dio
+  {static} +dynamic init()
+  {static} +Future<Response<dynamic>> postData()
+  {static} +Future<Response<dynamic>> getData()
+}
+
+"smartqueue::database::UserModel.dart::DioHelper4" o-- "dio::src::dio.dart::Dio"
+
+class "smartqueue::database::UserModel.dart::DioHelper2" {
+  {static} +Dio? dio
+  {static} +dynamic init()
+  {static} +Future<Response<dynamic>> postData()
+  {static} +Future<Response<dynamic>> getData()
+}
+
+"smartqueue::database::UserModel.dart::DioHelper2" o-- "dio::src::dio.dart::Dio"
+
+class "smartqueue::database::UserModel.dart::DioHelper3" {
+  {static} +Dio? dio
+  {static} +dynamic init()
+  {static} +Future<Response<dynamic>> postData()
+  {static} +Future<Response<dynamic>> getData()
+}
+
+"smartqueue::database::UserModel.dart::DioHelper3" o-- "dio::src::dio.dart::Dio"
+
+class "smartqueue::Home::Branches.dart::Branches" {
+  +State<Branches> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::Home::Branches.dart::Branches"
+
+class "smartqueue::Home::Branches.dart::_BranchesState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::Home::Branches.dart::_BranchesState"
+
+class "smartqueue::Home::HomeScreen.dart::HomeScreen" {
+  +State<HomeScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::Home::HomeScreen.dart::HomeScreen"
+
+class "smartqueue::Home::HomeScreen.dart::_HomeScreenState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::Home::HomeScreen.dart::_HomeScreenState"
+
+class "smartqueue::Home::Nav_Bar.dart::Nav_Bar" {
+  +_Nav_BarState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::Home::Nav_Bar.dart::Nav_Bar"
+
+class "smartqueue::Home::Nav_Bar.dart::_Nav_BarState" {
+  +int currentIndex
+  +List<Widget> screens
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::Home::Nav_Bar.dart::_Nav_BarState"
+
+class "smartqueue::Home::Nav_Bar.dart::BottomNavBarV2" {
+  +_BottomNavBarV2State createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::Home::Nav_Bar.dart::BottomNavBarV2"
+
+class "smartqueue::Home::Nav_Bar.dart::_BottomNavBarV2State" {
+  +int currentIndex
+  +dynamic setBottomBarIndex()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::Home::Nav_Bar.dart::_BottomNavBarV2State"
+
+class "smartqueue::Home::Nav_Bar.dart::BNBCustomPainter" {
+  +void paint()
+  +bool shouldRepaint()
+}
+
+"flutter::src::rendering::custom_paint.dart::CustomPainter" <|-- "smartqueue::Home::Nav_Bar.dart::BNBCustomPainter"
+
+class "smartqueue::intro::onboarding_page.dart::OnBoardingPage" {
+  +Widget build()
+  +void goToHome()
+  +Widget buildImage()
+  +DotsDecorator getDotDecoration()
+  +PageDecoration getPageDecoration()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::intro::onboarding_page.dart::OnBoardingPage"
+
+class "smartqueue::intro::WelcomeBage.dart::Welcome" {
+  +_WelcomeState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::intro::WelcomeBage.dart::Welcome"
+
+class "smartqueue::intro::WelcomeBage.dart::_WelcomeState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::intro::WelcomeBage.dart::_WelcomeState"
+
+class "smartqueue::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::main.dart::MyApp"
+
+class "smartqueue::Models::AuthModel.dart::AuthModel" {
+  +Data? data
+  +String? token
+  +String? message
+  +int? status
+  +bool? success
+  +Map<String, dynamic> toJson()
+}
+
+"smartqueue::Models::AuthModel.dart::AuthModel" o-- "smartqueue::Models::AuthModel.dart::Data"
+
+class "smartqueue::Models::AuthModel.dart::Data" {
+  +int? id
+  +String? name
+  +String? email
+  +String? password
+  +String? phone
+  +Map<String, dynamic> toJson()
+}
+
+class "smartqueue::Models::branch-models.dart::HomeModel" {
+  +String? status
+  +String? message
+  +List<Book>? data
+  +Map<String, dynamic> toJson()
+}
+
+class "smartqueue::Models::branch-models.dart::Book" {
+  +int? id
+  +String? name
+  +String? description
+  +String? file1
+  +String? categories
+  +String? audio
+  +String? author
+  +double? rate
+  +String? url
+  +String? file2
+  +String? url1
+  +String? createdAt
+  +String? updatedAt
+  +Map<String, dynamic> toJson()
+}
+
+class "smartqueue::Models::post.dart::Post" {
+  +int? userId
+  +int? id
+  +String? title
+  +String? body
+  +Map<String, dynamic> toJson()
+}
+
+class "smartqueue::modules::current_reservation_screen.dart::CurrentReservationScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::modules::current_reservation_screen.dart::CurrentReservationScreen"
+
+class "smartqueue::modules::favoritesScreen.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::favoritesScreen.dart::FavoritesScreen" {
+  +State<FavoritesScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::favoritesScreen.dart::FavoritesScreen"
+
+class "smartqueue::modules::favoritesScreen.dart::_FavoritesScreenState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::favoritesScreen.dart::_FavoritesScreenState"
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20bt.dart::Bank_of_Cairo_bt" {
+  +State<Bank_of_Cairo_bt> createState()
+}
+
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20bt.dart::_Bank_of_Cairo_bt" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20bt.dart::_Bank_of_Cairo_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20cs.dart::Bank_of_Cairo_cs" {
+  +State<Bank_of_Cairo_cs> createState()
+}
+
+
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20cs.dart::_Bank_of_Cairo_cs" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20cs.dart::_Bank_of_Cairo_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo.dart::Bank_of_Cairo" {
+  +State<Bank_of_Cairo> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo.dart::Bank_of_Cairo"
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo.dart::_Bank_of_Cairo" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo.dart::_Bank_of_Cairo"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banks-details.dart::BanksDetailsScreen" {
+  {static} +String routePass
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banks-details.dart::BanksDetailsScreen"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banks.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::HomeScreen::banksfile::Banks.dart::Banks" {
+  +State<Banks> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banks.dart::Banks"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banks.dart::_BanksState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Banks.dart::_BanksState"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20bt.dart::Banque_Misr_bt" {
+  +State<Banque_Misr_bt> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20bt.dart::Banque_Misr_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20bt.dart::_Banque_Misr_bt" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20bt.dart::_Banque_Misr_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20cs.dart::Banque_Misr_cs" {
+  +State<Banque_Misr_cs> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20cs.dart::Banque_Misr_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20cs.dart::_Banque_Misr_cs" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20cs.dart::_Banque_Misr_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr.dart::Banque_Misr" {
+  +State<Banque_Misr> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr.dart::Banque_Misr"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr.dart::_Banque_Misr" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr.dart::_Banque_Misr"
+
+class "smartqueue::modules::HomeScreen::banksfile::branches.dart::Branches1" {
+  +State<Branches1> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::branches.dart::Branches1"
+
+class "smartqueue::modules::HomeScreen::banksfile::branches.dart::_Branches1State" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::branches.dart::_Branches1State"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIB.dart::Cib" {
+  +State<Cib> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIB.dart::Cib"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIB.dart::_Cib" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIB.dart::_Cib"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIBbt.dart::Cib_bt" {
+  +State<Cib_bt> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIBbt.dart::Cib_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIBbt.dart::_Cib_bt" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIBbt.dart::_Cib_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIBcs.dart::Cib_cs" {
+  +State<Cib_cs> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIBcs.dart::Cib_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIBcs.dart::_Cib_cs" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIBcs.dart::_Cib_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::national%20bank%20of%20egypt.dart::national_bank_of_egypt" {
+  +State<national_bank_of_egypt> createState()
+}
+
+
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::national%20bank%20of%20egypt.dart::_national_bank_of_egypt" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::national%20bank%20of%20egypt.dart::_national_bank_of_egypt"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::nbebt.dart::Nbe_bt" {
+  +State<Nbe_bt> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::nbebt.dart::Nbe_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::nbebt.dart::_Nbe_bt" {
+  +String qrCode
+  +Future<void> scanQRCode()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::nbebt.dart::_Nbe_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::nbecs.dart::Nbe_cs" {
+  +State<Nbe_cs> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::nbecs.dart::Nbe_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::nbecs.dart::_Nbe_cs" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::nbecs.dart::_Nbe_cs"
+
+class "smartqueue::modules::HomeScreen::Clinics.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::HomeScreen::Clinics.dart::Clinics" {
+  +State<Clinics> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::Clinics.dart::Clinics"
+
+class "smartqueue::modules::HomeScreen::Clinics.dart::_ClinicsState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::Clinics.dart::_ClinicsState"
+
+class "smartqueue::modules::HomeScreen::Government%20interests.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::HomeScreen::Government%20interests.dart::Governmentinterests" {
+  +State<Governmentinterests> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::Government%20interests.dart::Governmentinterests"
+
+class "smartqueue::modules::HomeScreen::Government%20interests.dart::_GovernmentinterestsState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::Government%20interests.dart::_GovernmentinterestsState"
+
+class "smartqueue::modules::HomeScreen::homeScreen.dart::UserModel" {
+  +String name
+  +String image
+  +String screen
+}
+
+class "smartqueue::modules::HomeScreen::homeScreen.dart::homeScreen" {
+  +_homeScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::homeScreen.dart::homeScreen"
+
+class "smartqueue::modules::HomeScreen::homeScreen.dart::_homeScreenState" {
+  +List<UserModel> users
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::homeScreen.dart::_homeScreenState"
+
+class "smartqueue::modules::HomeScreen::readQr.dart::ScanScreen" {
+  +_ScanScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::readQr.dart::ScanScreen"
+
+class "smartqueue::modules::HomeScreen::readQr.dart::_ScanScreenState" {
+  +String qrstr
+  +dynamic height
+  +dynamic width
+  +Widget build()
+  +Future<void> scanQr()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::readQr.dart::_ScanScreenState"
+
+class "smartqueue::modules::HomeScreen::Telecom%20companies.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::HomeScreen::Telecom%20companies.dart::TelecomCompanies" {
+  +State<TelecomCompanies> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::Telecom%20companies.dart::TelecomCompanies"
+
+class "smartqueue::modules::HomeScreen::Telecom%20companies.dart::_TelecomCompaniesState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::Telecom%20companies.dart::_TelecomCompaniesState"
+
+class "smartqueue::modules::more::moreScreen.dart::moreScreen" {
+  +_moreScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::more::moreScreen.dart::moreScreen"
+
+class "smartqueue::modules::more::moreScreen.dart::_moreScreenState" {
+  +dynamic signout()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::more::moreScreen.dart::_moreScreenState"
+
+class "smartqueue::modules::more::Profile.dart::ProfilePage" {
+  +State<ProfilePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::more::Profile.dart::ProfilePage"
+
+class "smartqueue::modules::more::Profile.dart::_ProfilePageState" {
+  +Widget build()
+  +Widget buildTextField()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::more::Profile.dart::_ProfilePageState"
+
+class "smartqueue::modules::more::SittingsPage.dart::SettingsPage" {
+  +_SettingsPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::more::SittingsPage.dart::SettingsPage"
+
+class "smartqueue::modules::more::SittingsPage.dart::_SettingsPageState" {
+  +Widget build()
+  +Row buildNotificationOptionRow()
+  +GestureDetector buildAccountOptionRow()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::more::SittingsPage.dart::_SettingsPageState"
+
+class "smartqueue::modules::notificationsScreen.dart::notificationsScreen" {
+  +_notificationsScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::notificationsScreen.dart::notificationsScreen"
+
+class "smartqueue::modules::notificationsScreen.dart::_notificationsScreenState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::notificationsScreen.dart::_notificationsScreenState"
+
+class "smartqueue::modules::searchScreen.dart::searchScreen" {
+  +_searchScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::searchScreen.dart::searchScreen"
+
+class "smartqueue::modules::searchScreen.dart::_searchScreenState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::searchScreen.dart::_searchScreenState"
+
+class "smartqueue::SignIn-SignUp::SignIn.dart::SignIn" {
+  +State<SignIn> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::SignIn-SignUp::SignIn.dart::SignIn"
+
+class "smartqueue::SignIn-SignUp::SignIn.dart::_SignInState" {
+  +Pattern pattern
+  +TextEditingController email
+  +TextEditingController password
+  -GlobalKey<FormState> _formkey
+  -bool _isObscure
+  +Widget build()
+}
+
+"smartqueue::SignIn-SignUp::SignIn.dart::_SignInState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"smartqueue::SignIn-SignUp::SignIn.dart::_SignInState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::SignIn-SignUp::SignIn.dart::_SignInState"
+
+class "smartqueue::SignIn-SignUp::SignUp.dart::SignUp" {
+  +State<SignUp> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::SignIn-SignUp::SignUp.dart::SignUp"
+
+class "smartqueue::SignIn-SignUp::SignUp.dart::_SignUpState" {
+  +Pattern pattern
+  +TextEditingController name
+  +TextEditingController email
+  +TextEditingController phonenumber
+  +TextEditingController password
+  +TextEditingController confirmpassword
+  -GlobalKey<FormState> _formkey
+  -bool _isObscure
+  -bool _isObscure1
+  +Widget build()
+}
+
+"smartqueue::SignIn-SignUp::SignUp.dart::_SignUpState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"smartqueue::SignIn-SignUp::SignUp.dart::_SignUpState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::SignIn-SignUp::SignUp.dart::_SignUpState"
+
+class "smartqueue::SplashScreen::SplashScreen.dart::SplashScreen" {
+  +_SplashScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::SplashScreen::SplashScreen.dart::SplashScreen"
+
+class "smartqueue::SplashScreen::SplashScreen.dart::_SplashScreenState" {
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::SplashScreen::SplashScreen.dart::_SplashScreenState"
+
+class "smartqueue::widget::button_widget.dart::ButtonWidget" {
+  +String text
+  +void Function() onClicked
+  +Widget build()
+}
+
+"smartqueue::widget::button_widget.dart::ButtonWidget" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::widget::button_widget.dart::ButtonWidget"
+
+class "smartqueue::widget::category_card.dart::CategoryCard" {
+  +String svgSrc
+  +String title
+  +Function press
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::widget::category_card.dart::CategoryCard"
+
+class "smartqueue::widget::search_bar.dart::SearchBar" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::widget::search_bar.dart::SearchBar"
+
+
+@enduml
+PS D:\Flutter Projects\SmartQueue-master> Flutter pub global run dcdg
+@startuml
+set namespaceSeparator ::
+
+class "smartqueue::cubit::App-cubit::cubit.dart::AppCubit" {
+  +AuthModel? authModel
+  {static} +AppCubit get()
+  +void userLogin()
+  +void userRegister()
+}
+
+"smartqueue::cubit::App-cubit::cubit.dart::AppCubit" o-- "smartqueue::Models::AuthModel.dart::AuthModel"
+"bloc::src::cubit.dart::Cubit" <|-- "smartqueue::cubit::App-cubit::cubit.dart::AppCubit"
+
+abstract class "smartqueue::cubit::App-cubit::states.dart::AuthState" {
+}
+
+class "smartqueue::cubit::App-cubit::states.dart::initialState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::initialState"
+
+class "smartqueue::cubit::App-cubit::states.dart::LoginLoadingState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::LoginLoadingState"
+
+class "smartqueue::cubit::App-cubit::states.dart::LoginSucssesState" {
+  +AuthModel authModel
+}
+
+"smartqueue::cubit::App-cubit::states.dart::LoginSucssesState" o-- "smartqueue::Models::AuthModel.dart::AuthModel"
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::LoginSucssesState"
+
+class "smartqueue::cubit::App-cubit::states.dart::LoginErrorState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::LoginErrorState"
+
+class "smartqueue::cubit::App-cubit::states.dart::SignUpLoadingState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::SignUpLoadingState"
+
+class "smartqueue::cubit::App-cubit::states.dart::SignUpSucssesState" {
+  +AuthModel authModel
+}
+
+"smartqueue::cubit::App-cubit::states.dart::SignUpSucssesState" o-- "smartqueue::Models::AuthModel.dart::AuthModel"
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::SignUpSucssesState"
+
+class "smartqueue::cubit::App-cubit::states.dart::SignUpErrorState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::SignUpErrorState"
+
+class "smartqueue::cubit::App-cubit::states.dart::ProfileLoadingState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::ProfileLoadingState"
+
+class "smartqueue::cubit::App-cubit::states.dart::ProfileSucssesState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::ProfileSucssesState"
+
+class "smartqueue::cubit::App-cubit::states.dart::ProfileErrorState" {
+}
+
+"smartqueue::cubit::App-cubit::states.dart::AuthState" <|-- "smartqueue::cubit::App-cubit::states.dart::ProfileErrorState"
+
+class "smartqueue::cubit::branch-cubit::cubit.dart::HomeCubit" {
+  +HomeModel? homeModel
+  +HomeModel? data
+  {static} +HomeCubit get()
+  +void getHomeData()
+}
+
+"smartqueue::cubit::branch-cubit::cubit.dart::HomeCubit" o-- "smartqueue::Models::branch-models.dart::HomeModel"
+"bloc::src::cubit.dart::Cubit" <|-- "smartqueue::cubit::branch-cubit::cubit.dart::HomeCubit"
+
+abstract class "smartqueue::cubit::branch-cubit::states.dart::HomeStates" {
+}
+
+class "smartqueue::cubit::branch-cubit::states.dart::HomeInitialState" {
+}
+
+"smartqueue::cubit::branch-cubit::states.dart::HomeStates" <|-- "smartqueue::cubit::branch-cubit::states.dart::HomeInitialState"
+
+class "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataLoadingState" {
+}
+
+"smartqueue::cubit::branch-cubit::states.dart::HomeStates" <|-- "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataLoadingState"
+
+class "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataSuccessState" {
+  +HomeModel homeModel
+}
+
+"smartqueue::cubit::branch-cubit::states.dart::HomeGetDataSuccessState" o-- "smartqueue::Models::branch-models.dart::HomeModel"
+"smartqueue::cubit::branch-cubit::states.dart::HomeStates" <|-- "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataSuccessState"
+
+class "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataErrorState" {
+}
+
+"smartqueue::cubit::branch-cubit::states.dart::HomeStates" <|-- "smartqueue::cubit::branch-cubit::states.dart::HomeGetDataErrorState"
+
+class "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsCubit" {
+  +DataService dataService
+  +void posts
+}
+
+
+abstract class "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsState" {
+}
+
+class "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsInitial" {
+}
+
+"smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsState" <|-- "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsInitial"
+
+class "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::GetPosts" {
+}
+
+"smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::PostsState" <|-- "smartqueue::cubit::current_reservation-cubit::posts_cubit.dart::GetPosts"
+
+class "smartqueue::database::CacheHelper.dart::CacheHelper" {
+  {static} +SharedPreferences? sharedPreferences
+  {static} +dynamic int()
+  {static} +Future<bool> putBoolean()
+  {static} +dynamic getData()
+  {static} +Future<bool> saveData()
+  {static} +Future<bool> removeData()
+}
+
+"smartqueue::database::CacheHelper.dart::CacheHelper" o-- "shared_preferences::shared_preferences.dart::SharedPreferences"
+
+class "smartqueue::database::current_reservation-data_service::data_service.dart::DataService" {
+  -String _baseurl
+  +Future<List<Post>> getPosts()
+}
+
+class "smartqueue::database::UserModel.dart::DioHelper" {
+  {static} +Dio? dio
+  {static} +dynamic init()
+  {static} +Future<Response<dynamic>> postData()
+  {static} +Future<Response<dynamic>> getData()
+}
+
+"smartqueue::database::UserModel.dart::DioHelper" o-- "dio::src::dio.dart::Dio"
+
+class "smartqueue::database::UserModel.dart::DioHelper4" {
+  {static} +Dio? dio
+  {static} +dynamic init()
+  {static} +Future<Response<dynamic>> postData()
+  {static} +Future<Response<dynamic>> getData()
+}
+
+"smartqueue::database::UserModel.dart::DioHelper4" o-- "dio::src::dio.dart::Dio"
+
+class "smartqueue::database::UserModel.dart::DioHelper2" {
+  {static} +Dio? dio
+  {static} +dynamic init()
+  {static} +Future<Response<dynamic>> postData()
+  {static} +Future<Response<dynamic>> getData()
+}
+
+"smartqueue::database::UserModel.dart::DioHelper2" o-- "dio::src::dio.dart::Dio"
+
+class "smartqueue::database::UserModel.dart::DioHelper3" {
+  {static} +Dio? dio
+  {static} +dynamic init()
+  {static} +Future<Response<dynamic>> postData()
+  {static} +Future<Response<dynamic>> getData()
+}
+
+"smartqueue::database::UserModel.dart::DioHelper3" o-- "dio::src::dio.dart::Dio"
+
+class "smartqueue::Home::Branches.dart::Branches" {
+  +State<Branches> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::Home::Branches.dart::Branches"
+
+class "smartqueue::Home::Branches.dart::_BranchesState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::Home::Branches.dart::_BranchesState"
+
+class "smartqueue::Home::HomeScreen.dart::HomeScreen" {
+  +State<HomeScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::Home::HomeScreen.dart::HomeScreen"
+
+class "smartqueue::Home::HomeScreen.dart::_HomeScreenState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::Home::HomeScreen.dart::_HomeScreenState"
+
+class "smartqueue::Home::Nav_Bar.dart::Nav_Bar" {
+  +_Nav_BarState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::Home::Nav_Bar.dart::Nav_Bar"
+
+class "smartqueue::Home::Nav_Bar.dart::_Nav_BarState" {
+  +int currentIndex
+  +List<Widget> screens
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::Home::Nav_Bar.dart::_Nav_BarState"
+
+class "smartqueue::Home::Nav_Bar.dart::BottomNavBarV2" {
+  +_BottomNavBarV2State createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::Home::Nav_Bar.dart::BottomNavBarV2"
+
+class "smartqueue::Home::Nav_Bar.dart::_BottomNavBarV2State" {
+  +int currentIndex
+  +dynamic setBottomBarIndex()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::Home::Nav_Bar.dart::_BottomNavBarV2State"
+
+class "smartqueue::Home::Nav_Bar.dart::BNBCustomPainter" {
+  +void paint()
+  +bool shouldRepaint()
+}
+
+"flutter::src::rendering::custom_paint.dart::CustomPainter" <|-- "smartqueue::Home::Nav_Bar.dart::BNBCustomPainter"
+
+class "smartqueue::intro::onboarding_page.dart::OnBoardingPage" {
+  +Widget build()
+  +void goToHome()
+  +Widget buildImage()
+  +DotsDecorator getDotDecoration()
+  +PageDecoration getPageDecoration()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::intro::onboarding_page.dart::OnBoardingPage"
+
+class "smartqueue::intro::WelcomeBage.dart::Welcome" {
+  +_WelcomeState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::intro::WelcomeBage.dart::Welcome"
+
+class "smartqueue::intro::WelcomeBage.dart::_WelcomeState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::intro::WelcomeBage.dart::_WelcomeState"
+
+class "smartqueue::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::main.dart::MyApp"
+
+class "smartqueue::Models::AuthModel.dart::AuthModel" {
+  +Data? data
+  +String? token
+  +String? message
+  +int? status
+  +bool? success
+  +Map<String, dynamic> toJson()
+}
+
+"smartqueue::Models::AuthModel.dart::AuthModel" o-- "smartqueue::Models::AuthModel.dart::Data"
+
+class "smartqueue::Models::AuthModel.dart::Data" {
+  +int? id
+  +String? name
+  +String? email
+  +String? password
+  +String? phone
+  +Map<String, dynamic> toJson()
+}
+
+class "smartqueue::Models::branch-models.dart::HomeModel" {
+  +String? status
+  +String? message
+  +List<Book>? data
+  +Map<String, dynamic> toJson()
+}
+
+class "smartqueue::Models::branch-models.dart::Book" {
+  +int? id
+  +String? name
+  +String? description
+  +String? file1
+  +String? categories
+  +String? audio
+  +String? author
+  +double? rate
+  +String? url
+  +String? file2
+  +String? url1
+  +String? createdAt
+  +String? updatedAt
+  +Map<String, dynamic> toJson()
+}
+
+class "smartqueue::Models::post.dart::Post" {
+  +int? userId
+  +int? id
+  +String? title
+  +String? body
+  +Map<String, dynamic> toJson()
+}
+
+class "smartqueue::modules::current_reservation_screen.dart::CurrentReservationScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::modules::current_reservation_screen.dart::CurrentReservationScreen"
+
+class "smartqueue::modules::favoritesScreen.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::favoritesScreen.dart::FavoritesScreen" {
+  +State<FavoritesScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::favoritesScreen.dart::FavoritesScreen"
+
+class "smartqueue::modules::favoritesScreen.dart::_FavoritesScreenState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::favoritesScreen.dart::_FavoritesScreenState"
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20bt.dart::Bank_of_Cairo_bt" {
+  +State<Bank_of_Cairo_bt> createState()
+}
+
+
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20bt.dart::_Bank_of_Cairo_bt" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20bt.dart::_Bank_of_Cairo_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20cs.dart::Bank_of_Cairo_cs" {
+  +State<Bank_of_Cairo_cs> createState()
+}
+
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20cs.dart::_Bank_of_Cairo_cs" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo%20cs.dart::_Bank_of_Cairo_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo.dart::Bank_of_Cairo" {
+  +State<Bank_of_Cairo> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo.dart::Bank_of_Cairo"
+
+class "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo.dart::_Bank_of_Cairo" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Bank%20of%20Cairo::Bank%20of%20Cairo.dart::_Bank_of_Cairo"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banks-details.dart::BanksDetailsScreen" {
+  {static} +String routePass
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banks-details.dart::BanksDetailsScreen"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banks.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::HomeScreen::banksfile::Banks.dart::Banks" {
+  +State<Banks> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banks.dart::Banks"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banks.dart::_BanksState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Banks.dart::_BanksState"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20bt.dart::Banque_Misr_bt" {
+  +State<Banque_Misr_bt> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20bt.dart::Banque_Misr_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20bt.dart::_Banque_Misr_bt" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20bt.dart::_Banque_Misr_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20cs.dart::Banque_Misr_cs" {
+  +State<Banque_Misr_cs> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20cs.dart::Banque_Misr_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20cs.dart::_Banque_Misr_cs" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr%20cs.dart::_Banque_Misr_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr.dart::Banque_Misr" {
+  +State<Banque_Misr> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr.dart::Banque_Misr"
+
+class "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr.dart::_Banque_Misr" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::Banque%20Misr::Banque%20Misr.dart::_Banque_Misr"
+
+class "smartqueue::modules::HomeScreen::banksfile::branches.dart::Branches1" {
+  +State<Branches1> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::branches.dart::Branches1"
+
+class "smartqueue::modules::HomeScreen::banksfile::branches.dart::_Branches1State" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::branches.dart::_Branches1State"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIB.dart::Cib" {
+  +State<Cib> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIB.dart::Cib"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIB.dart::_Cib" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIB.dart::_Cib"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIBbt.dart::Cib_bt" {
+  +State<Cib_bt> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIBbt.dart::Cib_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIBbt.dart::_Cib_bt" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIBbt.dart::_Cib_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIBcs.dart::Cib_cs" {
+  +State<Cib_cs> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIBcs.dart::Cib_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::CIB::CIBcs.dart::_Cib_cs" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::CIB::CIBcs.dart::_Cib_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::national%20bank%20of%20egypt.dart::national_bank_of_egypt" {
+  +State<national_bank_of_egypt> createState()
+}
+
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::national%20bank%20of%20egypt.dart::_national_bank_of_egypt" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::national%20bank%20of%20egypt.dart::_national_bank_of_egypt"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::nbebt.dart::Nbe_bt" {
+  +State<Nbe_bt> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::nbebt.dart::Nbe_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::nbebt.dart::_Nbe_bt" {
+  +String qrCode
+  +Future<void> scanQRCode()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::nbebt.dart::_Nbe_bt"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::nbecs.dart::Nbe_cs" {
+  +State<Nbe_cs> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::nbecs.dart::Nbe_cs"
+
+class "smartqueue::modules::HomeScreen::banksfile::NBE::nbecs.dart::_Nbe_cs" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::banksfile::NBE::nbecs.dart::_Nbe_cs"
+
+class "smartqueue::modules::HomeScreen::Clinics.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::HomeScreen::Clinics.dart::Clinics" {
+  +State<Clinics> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::Clinics.dart::Clinics"
+
+class "smartqueue::modules::HomeScreen::Clinics.dart::_ClinicsState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::Clinics.dart::_ClinicsState"
+
+class "smartqueue::modules::HomeScreen::Government%20interests.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::HomeScreen::Government%20interests.dart::Governmentinterests" {
+  +State<Governmentinterests> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::Government%20interests.dart::Governmentinterests"
+
+class "smartqueue::modules::HomeScreen::Government%20interests.dart::_GovernmentinterestsState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::Government%20interests.dart::_GovernmentinterestsState"
+
+class "smartqueue::modules::HomeScreen::homeScreen.dart::UserModel" {
+  +String name
+  +String image
+  +String screen
+}
+
+class "smartqueue::modules::HomeScreen::homeScreen.dart::homeScreen" {
+  +_homeScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::homeScreen.dart::homeScreen"
+
+class "smartqueue::modules::HomeScreen::homeScreen.dart::_homeScreenState" {
+  +List<UserModel> users
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::homeScreen.dart::_homeScreenState"
+
+class "smartqueue::modules::HomeScreen::readQr.dart::ScanScreen" {
+  +_ScanScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::readQr.dart::ScanScreen"
+
+class "smartqueue::modules::HomeScreen::readQr.dart::_ScanScreenState" {
+  +String qrstr
+  +dynamic height
+  +dynamic width
+  +Widget build()
+  +Future<void> scanQr()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::readQr.dart::_ScanScreenState"
+
+class "smartqueue::modules::HomeScreen::Telecom%20companies.dart::UserModel" {
+  +String name
+  +String image
+}
+
+class "smartqueue::modules::HomeScreen::Telecom%20companies.dart::TelecomCompanies" {
+  +State<TelecomCompanies> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::HomeScreen::Telecom%20companies.dart::TelecomCompanies"
+
+class "smartqueue::modules::HomeScreen::Telecom%20companies.dart::_TelecomCompaniesState" {
+  +Widget build()
+  +Widget buildUserItem()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::HomeScreen::Telecom%20companies.dart::_TelecomCompaniesState"
+
+class "smartqueue::modules::more::moreScreen.dart::moreScreen" {
+  +_moreScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::more::moreScreen.dart::moreScreen"
+
+class "smartqueue::modules::more::moreScreen.dart::_moreScreenState" {
+  +dynamic signout()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::more::moreScreen.dart::_moreScreenState"
+
+class "smartqueue::modules::more::Profile.dart::ProfilePage" {
+  +State<ProfilePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::more::Profile.dart::ProfilePage"
+
+class "smartqueue::modules::more::Profile.dart::_ProfilePageState" {
+  +Widget build()
+  +Widget buildTextField()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::more::Profile.dart::_ProfilePageState"
+
+class "smartqueue::modules::more::SittingsPage.dart::SettingsPage" {
+  +_SettingsPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::more::SittingsPage.dart::SettingsPage"
+
+class "smartqueue::modules::more::SittingsPage.dart::_SettingsPageState" {
+  +Widget build()
+  +Row buildNotificationOptionRow()
+  +GestureDetector buildAccountOptionRow()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::more::SittingsPage.dart::_SettingsPageState"
+
+class "smartqueue::modules::notificationsScreen.dart::notificationsScreen" {
+  +_notificationsScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::notificationsScreen.dart::notificationsScreen"
+
+class "smartqueue::modules::notificationsScreen.dart::_notificationsScreenState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::notificationsScreen.dart::_notificationsScreenState"
+
+class "smartqueue::modules::searchScreen.dart::searchScreen" {
+  +_searchScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::modules::searchScreen.dart::searchScreen"
+
+class "smartqueue::modules::searchScreen.dart::_searchScreenState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::modules::searchScreen.dart::_searchScreenState"
+
+class "smartqueue::SignIn-SignUp::SignIn.dart::SignIn" {
+  +State<SignIn> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::SignIn-SignUp::SignIn.dart::SignIn"
+
+class "smartqueue::SignIn-SignUp::SignIn.dart::_SignInState" {
+  +Pattern pattern
+  +TextEditingController email
+  +TextEditingController password
+  -GlobalKey<FormState> _formkey
+  -bool _isObscure
+  +Widget build()
+}
+
+"smartqueue::SignIn-SignUp::SignIn.dart::_SignInState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"smartqueue::SignIn-SignUp::SignIn.dart::_SignInState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::SignIn-SignUp::SignIn.dart::_SignInState"
+
+class "smartqueue::SignIn-SignUp::SignUp.dart::SignUp" {
+  +State<SignUp> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::SignIn-SignUp::SignUp.dart::SignUp"
+
+class "smartqueue::SignIn-SignUp::SignUp.dart::_SignUpState" {
+  +Pattern pattern
+  +TextEditingController name
+  +TextEditingController email
+  +TextEditingController phonenumber
+  +TextEditingController password
+  +TextEditingController confirmpassword
+  -GlobalKey<FormState> _formkey
+  -bool _isObscure
+  -bool _isObscure1
+  +Widget build()
+}
+
+"smartqueue::SignIn-SignUp::SignUp.dart::_SignUpState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"smartqueue::SignIn-SignUp::SignUp.dart::_SignUpState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::SignIn-SignUp::SignUp.dart::_SignUpState"
+
+class "smartqueue::SplashScreen::SplashScreen.dart::SplashScreen" {
+  +_SplashScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "smartqueue::SplashScreen::SplashScreen.dart::SplashScreen"
+
+class "smartqueue::SplashScreen::SplashScreen.dart::_SplashScreenState" {
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "smartqueue::SplashScreen::SplashScreen.dart::_SplashScreenState"
+
+class "smartqueue::widget::button_widget.dart::ButtonWidget" {
+  +String text
+  +void Function() onClicked
+  +Widget build()
+}
+
+"smartqueue::widget::button_widget.dart::ButtonWidget" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::widget::button_widget.dart::ButtonWidget"
+
+class "smartqueue::widget::category_card.dart::CategoryCard" {
+  +String svgSrc
+  +String title
+  +Function press
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::widget::category_card.dart::CategoryCard"
+
+class "smartqueue::widget::search_bar.dart::SearchBar" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "smartqueue::widget::search_bar.dart::SearchBar"
+
+
+@enduml
